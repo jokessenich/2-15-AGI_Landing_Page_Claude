@@ -218,12 +218,13 @@ function track(e,d){console.log('[AGI]',e,d||'')}
     return guess;
   }
 
-  var jan1=new Date(year,0,1);
-  var dayOfWeek=jan1.getDay();
-  var firstWed=new Date(year,0,1+((3-dayOfWeek+7)%7));
+  /* Anchor: March 4, 2026 then every other Wednesday */
+  var anchor=new Date(year,2,4); /* March 4 */
+  /* If anchor year doesn't match current year, find first Wed of Jan as fallback */
+  if(anchor.getDay()!==3){var jan1=new Date(year,0,1);var dayOfWeek=jan1.getDay();anchor=new Date(year,0,1+((3-dayOfWeek+7)%7));}
 
   var allDates=[];
-  var cur=new Date(firstWed);
+  var cur=new Date(anchor);
   while(cur.getFullYear()===year){
     allDates.push(new Date(cur));
     cur.setDate(cur.getDate()+14);
