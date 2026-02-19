@@ -196,6 +196,7 @@ h1,h2,h3,h4{font-family:var(--f-display);font-weight:500;line-height:1.18}h1{fon
 <footer class="footer" role="contentinfo"><div class="wrap"><div class="footer__inner"><div class="footer__brand">Academy for Guided <em>Imagery</em></div><nav class="footer__links" aria-label="Footer"><a href="mailto:info@acadgi.com">Contact</a><a href="#">Privacy</a><a href="#">Terms</a></nav><div class="footer__copy">&copy; 2026 Academy for Guided Imagery. All rights reserved.</div><div class="footer__disclaimer">AGI provides professional education and training. This session is informational and does not constitute medical treatment. Individual outcomes vary.</div></div></div></footer>
 
 <script>
+  const ZOHO_URL = process.env.ZOHO_URL;
 function track(e,d){console.log('[AGI]',e,d||'')}
 
 /* UTM capture */
@@ -281,7 +282,6 @@ document.querySelectorAll('.accordion__header').forEach(function(b){b.addEventLi
   if(window.__noSessions)return;
   var form=document.getElementById('regForm'),sub=document.getElementById('submitBtn'),sms=document.getElementById('smsOptIn'),hint=document.getElementById('submitHint');
   var phone=document.getElementById('phoneMain'),role=document.getElementById('role');
-  var ZOHO_URL='https://flow.zoho.com/914652485/flow/webhook/incoming?zapikey=1001.32235a064f96aba391d3b3999df52bc1.a0de9f1f31372a5b7558720da130584e&isdebug=false';
 
   ['fullName','email'].forEach(function(id){var el=document.getElementById(id);el.addEventListener('blur',function(){el.value=el.value.trim()})});
 
