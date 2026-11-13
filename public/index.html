@@ -76,7 +76,7 @@ h1,h2,h3,h4{font-family:var(--f-display);font-weight:500;line-height:1.18}h1{fon
         <!-- Role and phone removed -->
         <div class="form-group">
           <label>Choose a Session <span class="req">*</span></label>
-          <p class="form-hint" style="margin-top:0;margin-bottom:.4rem">All sessions are at 9:30 PM ET. Calendar files adjust to your local time.</p>
+          <p class="form-hint" style="margin-top:0;margin-bottom:.4rem">All sessions are Friday at 9:30 PM ET. Calendar files adjust to your local time.</p>
           <p class="form-hint" style="margin-top:0;margin-bottom:.5rem;color:var(--c-text-mid);font-weight:500">Seats are limited to maintain live interaction.</p>
           <div class="radio-group" id="sessionRadios" role="radiogroup" aria-label="Session time"></div>
           <div class="form-error" id="sessionTime-error" role="alert">Please choose a session time.</div>
@@ -221,12 +221,9 @@ function track(e,d){console.log('[AGI]',e,d||'')}
     return guess;
   }
 
-  /* One-off: Wednesday Nov 18 2026 */
-  var oneOffs=[new Date(2026,10,18)];
-
-  /* Recurring: every other Monday starting Nov 23, 2026 */
-  var anchor=new Date(2026,10,23);
-  var allDates=oneOffs.slice();
+  /* Every other Friday starting Nov 20, 2026 */
+  var anchor=new Date(2026,10,20);
+  var allDates=[];
   var cur=new Date(anchor);
   var endDate=new Date(anchor);
   endDate.setFullYear(endDate.getFullYear()+1);
@@ -234,8 +231,6 @@ function track(e,d){console.log('[AGI]',e,d||'')}
     allDates.push(new Date(cur));
     cur.setDate(cur.getDate()+14);
   }
-  /* Sort chronologically */
-  allDates.sort(function(a,b){return a-b});
 
   var sessions=[];
   var labelFmt=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',weekday:'short',month:'long',day:'numeric'});
