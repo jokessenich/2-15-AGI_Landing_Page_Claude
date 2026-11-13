@@ -457,6 +457,13 @@ document.querySelectorAll('.accordion__header').forEach(function(b){
     .then(function(data){
       if(data.success){
         track('zoom_register_success',{join_url:data.join_url,registrant_id:data.registrant_id});
+        // Meta Pixel - registration conversion
+if(typeof fbq !== 'undefined') {
+  fbq('track', 'Lead', {
+    content_name: 'AGI Info Session',
+    content_category: 'registration'
+  });
+}
         document.getElementById('modal-name').textContent=payload.fullName.split(' ')[0];
         if(data.join_url){
           document.getElementById('zoomJoinUrl').href=data.join_url;
