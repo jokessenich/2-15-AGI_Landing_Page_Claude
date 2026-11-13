@@ -87,7 +87,7 @@ src="https://www.facebook.com/tr?id=1281796377159207&ev=PageView&noscript=1"
         <input type="hidden" id="utm_adset" name="utm_adset">
         <input type="hidden" id="utm_ad" name="utm_ad">
         <div class="form-row">
-          <div class="form-group"><label for="fullName">Full Name <span class="req">*</span></label><input type="text" id="fullName" name="fullName" class="form-input" required autocomplete="name" placeholder="Jane Smith"><div class="form-error" id="fullName-error" role="alert">Please enter your name.</div></div>
+          <div class="form-group"><label for="fullName">Full Name <span class="req">*</span></label><input type="text" id="fullName" name="fullName" class="form-input" required autocomplete="name" placeholder="Jane Smith"><div class="form-error" id="fullName-error" role="alert">Please enter your first and last name.</div></div>
           <div class="form-group"><label for="email">Email <span class="req">*</span></label><input type="email" id="email" name="email" class="form-input" required autocomplete="email" placeholder="you@practice.com"><div class="form-error" id="email-error" role="alert">Please enter a valid email.</div></div>
         </div>
         <!-- Role and phone removed -->
@@ -341,7 +341,7 @@ document.querySelectorAll('.accordion__header').forEach(function(b){
   });
 
   var F={
-    fullName:{el:document.getElementById('fullName'),ok:function(v){return v.trim().length>=2}},
+    fullName:{el:document.getElementById('fullName'),ok:function(v){var p=v.trim().split(/\s+/);return p.length>=2&&p[0].length>=1&&p[1].length>=1}},
     email:{el:document.getElementById('email'),ok:function(v){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)}},
     sessionTime:{el:document.querySelectorAll('input[name="sessionTime"]'),radio:1,ok:function(){return!!document.querySelector('input[name="sessionTime"]:checked')}},
     emailConsent:{el:document.getElementById('emailConsent'),check:1,ok:function(){return document.getElementById('emailConsent').checked}},
